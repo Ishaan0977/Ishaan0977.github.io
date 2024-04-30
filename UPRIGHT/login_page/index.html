@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SignIn&SignUp</title>
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script
+    <script type="text/javascript" language="javascript">
       src="https://kit.fontawesome.com/64d58efce2.js"
-    
-    ></script>
+      window.onload=function() {
+        document.getElementById("form1").onsubmit=function() {
+          window.location.replace("login.php");
+          return false;
+        }
+      }
+      </script>
   
   </head>
   <body>
@@ -19,7 +24,7 @@
             <h2 class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign in <br>Your UPRIGHT Account here</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Username"/>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
@@ -53,12 +58,13 @@
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" name="userid" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" name="pswrd" />
             </div>
+            
             <input type="submit" value="Sign Up" class="btn solid" />
 
             <p class="social-text">Or Sign up with social platforms</p>
@@ -100,7 +106,6 @@
         </div>
       </div>
     </div>
-
     <script src="./app.js"></script>
   </body>
 </html>
