@@ -7,12 +7,20 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script type="text/javascript" language="javascript">
       src="https://kit.fontawesome.com/64d58efce2.js"
-      window.onload=function() {
-        document.getElementById("form1").onsubmit=function() {
-          window.location.replace("login.php");
-          return false;
-        }
-      }
+     
+        function check(form1)
+          {
+                if(form.userid.value == "admin" && form.pswrd.value == "admin")
+                    {
+                      window.open('img/upright.png')
+                    }
+                else
+                    {
+                      alert("Error Password or Username")
+                    }
+          }
+      
+      
       </script>
   
   </head>
@@ -20,17 +28,18 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="" class="sign-in-form">
+          <form action="" class="sign-in-form" name="form1">
             <h2 class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign in <br>Your UPRIGHT Account here</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username"/>
+              <input type="text" placeholder="Username" name="userid" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" name="pswrd" />
             </div>
-            <input type="submit" value="Login" class="btn solid" />
+            <input type="submit" value="Login" class="btn solid" onsubmit="click()" />
+            
 
             <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
