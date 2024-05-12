@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./styles1.css">
+        <style>
+            figure {
+              text-align: center;
+            }
+        </style> 
+        
+    </head> 
+ 
+    <body>
+        <div class="container">
+            <figure>
+                <img src="qr.png" alt="QR-CODE" height="400" text-align: center;>
+                <figcaption style="color:white;">UPI ID = realcops7@okhdfcbank</figcaption>
+             </figure>
+            <div >
+                <h1 class = "header_text">Your Order is on the way , pay for your order now!!</h1>
+                <h4>note: Pay any amount (minimum rs. 10) and for proof send a sreenshot to <a href="whatsapp://send?text=Hello World!&phone=+917009434283">this number</a>
+                </h4>
+            </div>
+            <div class = "buttons">
+                <button class="btn" id = "yesButton" onclick="nextPage()">Payment Done</button>
+                <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
+                <br>
+                <script>
+                    function nextPage() {
+                        window.location.href = "index.html";
+                    }
+                    
+                    function moveButton() {
+                        var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
+                        var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
+                        document.getElementById('noButton').style.left = `${x}px`;
+                        document.getElementById('noButton').style.top = `${y}px`;
+                    }
+                </script> 
+            </div>
+        </div>
+    </body> 
+</html>
