@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <title>Brew Haven - Freshly Brewed Coffee</title>
   <style>
@@ -11,29 +11,24 @@
       background: #f5f3f0;
       color: #333;
     }
-
     header {
       background-color: #6f4e37;
       color: white;
       padding: 20px;
       text-align: center;
     }
-
     h1 {
       margin: 0;
     }
-
     nav {
       margin-top: 10px;
     }
-
     nav a {
       color: white;
       margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
     }
-
     .hero {
       background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93') no-repeat center center/cover;
       height: 300px;
@@ -43,20 +38,17 @@
       color: white;
       text-shadow: 2px 2px 4px #000;
     }
-
     .hero h2 {
       font-size: 2.5rem;
       background: rgba(0,0,0,0.5);
       padding: 10px 20px;
       border-radius: 5px;
     }
-
     .content {
       max-width: 900px;
       margin: 40px auto;
       padding: 0 20px;
     }
-
     .menu-item {
       background: white;
       margin-bottom: 20px;
@@ -67,7 +59,6 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .menu-item button {
       background-color: #6f4e37;
       color: white;
@@ -75,18 +66,133 @@
       padding: 10px 15px;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-
     .menu-item button:hover {
       background-color: #5a3d2b;
     }
-
     footer {
       text-align: center;
       padding: 20px;
       background-color: #333;
       color: white;
       margin-top: 40px;
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-overlay.show {
+      display: flex;
+    }
+    .modal {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      width: 350px;
+      max-width: 90%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      font-size: 1rem;
+      color: #333;
+      animation: slideDown 0.3s forwards;
+    }
+    .modal h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #6f4e37;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    .modal label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    .modal input[type="text"],
+    .modal textarea {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1.5px solid #ccc;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    .modal input[type="text"]:focus,
+    .modal textarea:focus {
+      border-color: #6f4e37;
+      outline: none;
+    }
+    .modal textarea {
+      height: 70px;
+    }
+    .radio-group {
+      margin-top: 6px;
+    }
+    .radio-group label {
+      font-weight: 400;
+      margin-right: 18px;
+      cursor: pointer;
+    }
+    .radio-group input[type="radio"] {
+      margin-right: 5px;
+    }
+    .modal button {
+      margin-top: 20px;
+      background-color: #6f4e37;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .modal button:hover {
+      background-color: #5a3d2b;
+    }
+    .confirm-message {
+      white-space: pre-wrap;
+      line-height: 1.4;
+      font-weight: 500;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #2a2a2a;
+    }
+    .confirm-close-btn {
+      margin-top: 25px;
+      background-color: #6f4e37;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: fit-content;
+    }
+    .confirm-close-btn:hover {
+      background-color: #5a3d2b;
+    }
+    @keyframes slideDown {
+      from {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -108,19 +214,19 @@
     <h2>Our Menu</h2>
     <div class="menu-item">
       <span>Espresso</span>
-      <button class="order-btn">Order</button>
+      <button class="order-btn" data-price="3.50">Order</button>
     </div>
     <div class="menu-item">
       <span>Cappuccino</span>
-      <button class="order-btn">Order</button>
+      <button class="order-btn" data-price="4.50">Order</button>
     </div>
     <div class="menu-item">
       <span>Latte</span>
-      <button class="order-btn">Order</button>
+      <button class="order-btn" data-price="4.00">Order</button>
     </div>
     <div class="menu-item">
       <span>Mocha</span>
-      <button class="order-btn">Order</button>
+      <button class="order-btn" data-price="4.75">Order</button>
     </div>
   </section>
 
@@ -135,14 +241,87 @@
     &copy; 2025 Brew Haven. All rights reserved.
   </footer>
 
-  <!-- Your Script -->
+  <div class="modal-overlay" id="order-modal">
+    <div class="modal">
+      <h3>Place Your Order</h3>
+      <form id="order-form">
+        <label for="customer-name">Your Name</label>
+        <input type="text" id="customer-name" name="customer-name" required />
+
+        <label>Dine In or Takeaway?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="dine-option" value="Dine In" checked /> Dine In</label>
+          <label><input type="radio" name="dine-option" value="Takeaway" /> Takeaway</label>
+        </div>
+
+        <label>Add-ons or Additional Requests</label>
+        <textarea id="add-ons" name="add-ons" placeholder="e.g., extra sugar, no milk"></textarea>
+
+        <button type="submit">Confirm Order</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal">
+      <div class="confirm-message" id="confirm-message"></div>
+      <button class="confirm-close-btn" id="close-confirm">Close</button>
+    </div>
+  </div>
+
   <script>
-    $(document).ready(function() {
-      console.log("jQuery is loaded and ready!");
-      $('header').css('background-color', 'purple');
-      
+    $(document).ready(function(){
+      let selectedProduct = '';
+      let selectedPrice = 0;
+
       $('.order-btn').click(function() {
-        alert('Thank you for your order!');
+        selectedProduct = $(this).siblings('span').text();
+        selectedPrice = parseFloat($(this).data('price'));
+        $('#order-form')[0].reset();
+        $('#order-modal').addClass('show');
+      });
+
+      $('#order-form').submit(function(e){
+        e.preventDefault();
+        let name = $('#customer-name').val().trim();
+        let dineOption = $('input[name="dine-option"]:checked').val();
+        let addOns = $('#add-ons').val().trim();
+
+        if(!name) {
+          alert('Please enter your name.');
+          return;
+        }
+
+        let taxRate = 0.13;
+        let taxAmount = selectedPrice * taxRate;
+        let totalCost = (selectedPrice + taxAmount).toFixed(2);
+        let orderId = Math.floor(Math.random() * 900000 + 100000);
+
+        let message = 
+          `Thank you for your order, ${name}!\n\n` +
+          `Order Details:\n` +
+          `- Item: ${selectedProduct}\n` +
+          `- Dine Option: ${dineOption}\n` +
+          (addOns ? `- Additional Requests: ${addOns}\n` : '') +
+          `- Cost (CAD): $${selectedPrice.toFixed(2)}\n` +
+          `- Tax (13%): $${taxAmount.toFixed(2)}\n` +
+          `- Total: $${totalCost}\n\n` +
+          `Your order is confirmed!\n` +
+          `Order ID: #${orderId}`;
+
+        $('#order-modal').removeClass('show');
+        $('#confirm-message').text(message);
+        $('#confirm-modal').addClass('show');
+      });
+
+      $('#close-confirm').click(function(){
+        $('#confirm-modal').removeClass('show');
+      });
+
+      $('.modal-overlay').click(function(e){
+        if(e.target === this) {
+          $(this).removeClass('show');
+        }
       });
     });
   </script>
