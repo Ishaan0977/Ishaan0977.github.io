@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <title>Brew Haven - Freshly Brewed Coffee</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f3f0;
+      color: #333;
+    }
+
+    header {
+      background-color: #6f4e37;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93') no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      background: rgba(0,0,0,0.5);
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .menu-item {
+      background: white;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-item button {
+      background-color: #6f4e37;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .menu-item button:hover {
+      background-color: #5a3d2b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Brew Haven</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h2>Your Perfect Cup Starts Here</h2>
+  </section>
+
+  <section class="content" id="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-item">
+      <span>Espresso</span>
+      <button class="order-btn">Order</button>
+    </div>
+    <div class="menu-item">
+      <span>Cappuccino</span>
+      <button class="order-btn">Order</button>
+    </div>
+    <div class="menu-item">
+      <span>Latte</span>
+      <button class="order-btn">Order</button>
+    </div>
+    <div class="menu-item">
+      <span>Mocha</span>
+      <button class="order-btn">Order</button>
+    </div>
+  </section>
+
+  <section class="content" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: contact@brewhaven.com</p>
+    <p>Phone: +91 9876543210</p>
+    <p>Visit us at: 123 Brew Street, Beans City</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Brew Haven. All rights reserved.
+  </footer>
+
+  <!-- Your Script -->
+  <script>
+    $(document).ready(function() {
+      console.log("jQuery is loaded and ready!");
+      $('header').css('background-color', 'purple');
+      
+      $('.order-btn').click(function() {
+        alert('Thank you for your order!');
+      });
+    });
+  </script>
+</body>
+</html>
