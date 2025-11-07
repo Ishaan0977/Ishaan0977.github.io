@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ishaan Sharma – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff; --text:#000000; --accent:#ff3b3b; --muted:#555; --line:#eaeaea;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow:hidden}
+
+    /* ===== Cursor Glow (gradient) ===== */
+    .glow{position:fixed;left:0;top:0;width:28px;height:28px;border-radius:50%;pointer-events:none;mix-blend-mode:multiply;filter:blur(18px);transform:translate(-50%,-50%);opacity:.9;z-index:1000;background: radial-gradient(circle at 30% 30%, rgba(255,59,59,.45), rgba(255,140,0,.35) 45%, rgba(255,59,180,.25) 70%, rgba(255,59,59,0) 75%);transition:width .15s ease,height .15s ease,opacity .2s ease}
+
+    /* ===== Rail (horizontal on desktop) ===== */
+    main#rail{display:flex;gap:8vw;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;height:100vh;padding:0 6vw}
+
+    /* ===== Section fully centered ===== */
+    section{position:relative;flex:0 0 88vw;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;scroll-snap-align:center;text-align:center;padding:0 2rem;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+    section.visible{opacity:1;transform:translateY(0)}
+
+    h1{font-weight:800;font-size:clamp(2rem,6vw,4rem);margin:.25rem 0 1rem}
+    h2{font-weight:600;color:var(--accent);margin-bottom:1rem}
+    p,li{max-width:900px;line-height:1.7;margin-bottom:1rem;font-size:1.1rem}
+    ul{list-style:none}
+
+    /* ===== Hero avatar + parallax ===== */
+    .avatar-wrap{position:relative;perspective:1000px;margin-bottom:1.2rem}
+    .avatar{width:220px;height:220px;border-radius:50%;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15);transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+
+    .btn{display:inline-block;padding:.8rem 1.8rem;background:var(--accent);color:#fff;font-weight:600;border-radius:50px;text-decoration:none;transition:transform .3s ease,background .3s ease;margin-top:1.2rem}
+    .btn:hover{background:#000;transform:translateY(-2px) scale(1.04)}
+
+    .socials{display:flex;gap:20px;margin-top:1rem;justify-content:center}
+    .socials img{width:36px;height:36px;transition:transform .3s ease,opacity .3s ease;opacity:.85}
+    .socials img:hover{transform:scale(1.2);opacity:1}
+
+    .cert-logo{width:64px;height:auto;margin-left:10px;vertical-align:middle;transition:transform .3s ease,opacity .3s ease;opacity:.9}
+    .cert-logo:hover{transform:scale(1.15);opacity:1}
+
+    /* ===== Timeline (progress + dots) ===== */
+    .baseline{position:fixed;left:0;right:0;bottom:6vh;height:1px;background:var(--line);z-index:900}
+    .progress{position:fixed;left:6vw;bottom:6vh;height:2px;width:0;background:var(--accent);box-shadow:0 0 12px rgba(255,59,59,.5);transform-origin:left;z-index:901}
+    .dots{position:fixed;left:6vw;right:6vw;bottom:calc(6vh - 10px);display:flex;justify-content:space-between;z-index:902}
+    .dot{width:8px;height:8px;border-radius:50%;background:#bbb;opacity:.6;transition:transform .25s ease,background .25s ease,opacity .25s ease}
+    .dot.active{background:var(--accent);opacity:1;transform:scale(1.3);box-shadow:0 0 10px rgba(255,59,59,.5)}
+
+    footer{text-align:center;padding:2rem;color:var(--muted)}
+
+    /* ===== Mobile: vertical stack ===== */
+    @media (max-width:860px){
+      body{overflow:auto}
+      main#rail{flex-direction:column;height:auto;gap:0;padding:0}
+      section{flex:1 0 auto;height:auto;min-height:100vh;scroll-snap-align:start}
+      .baseline,.progress,.dots{position:sticky;bottom:auto;top:0}
+    }
+  </style>
+</head>
+<body>
+  <!-- Cursor glow -->
+  <div class="glow" id="glow"></div>
+
+  <!-- Timeline -->
+  <div class="baseline"></div>
+  <div class="progress" id="progress"></div>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+
+  <main id="rail">
+    <!-- ===== HERO (restored and centered) ===== -->
+    <section id="home">
+      <div class="avatar-wrap" data-parallax>
+        <div class="avatar" id="avatar"><img src="Pi7_Passport_Photo.jpeg" alt="Ishaan Sharma"></div>
+      </div>
+      <h1 data-parallax>Hi, I'm Ishaan Sharma</h1>
+      <h2>VAPT Analyst | Cybersecurity Professional</h2>
+      <p>Cybersecurity enthusiast specializing in Vulnerability Assessment, Penetration Testing, and Digital Forensics. I identify and mitigate vulnerabilities across web, mobile, and cloud infrastructures using a blend of manual analysis and industry‑standard tools.</p>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/ishaansh" target="_blank" aria-label="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"></a>
+        <a href="https://github.com/ishaan0977" target="_blank" aria-label="GitHub"><img src="https://cdn-icons-png.flaticon.com/512/733/733609.png" alt="GitHub"></a>
+      </div>
+      <a href="#experience" class="btn">Explore My Journey</a>
+    </section>
+
+    <section id="experience">
+      <h1>Experience</h1>
+      <h2>SMC Global Securities Ltd.</h2>
+      <ul>
+        <li><b>VAPT Analyst – I</b> (May 2025 – Present) – Conducted in‑depth penetration testing and vulnerability assessments across web and cloud systems. Collaborated on OWASP Top 10 mitigation.</li>
+        <li><b>VAPT Intern</b> (Feb 2025 – Apr 2025) – Supported web, mail server, and API pentests using Burp Suite, Nmap, and Metasploit.</li>
+      </ul>
+      <h2>Secuneus Technologies</h2>
+      <p><b>Forensic Investigator Intern</b> (Dec 2023 – Jan 2024) – Acquired and analyzed digital evidence using FTK Imager and Autopsy; conducted Volatility‑based memory forensics.</p>
+      <h2>HB Technologies</h2>
+      <p><b>Cybersecurity Analyst Intern</b> (Mar 2023 – Jun 2023) – Executed network and web pentests, automated reports, and reduced organizational risk by 88%.</p>
+      <a href="#projects" class="btn">View Projects</a>
+    </section>
+
+    <section id="projects">
+      <h1>Projects</h1>
+      <ul>
+        <li><b>Cybersecurity CTF Platform on AWS</b> – Deployed a cloud‑based CTF with Metasploit for SQLi/XSS simulation.</li>
+        <li><b>Cyber Attack Investigation & Digital Forensic Analysis</b> – Simulated phishing/malware incidents; recovered data using FTK and Autopsy.</li>
+        <li><b>Secure Network Design</b> – Built secure topologies with IPsec, VPNs, and tunneling configurations.</li>
+      </ul>
+      <a href="#certifications" class="btn">Certifications</a>
+    </section>
+
+    <section id="certifications">
+      <h1>Certifications</h1>
+      <ul>
+        <li>CompTIA PenTest+ (PO-003) – Apr 2025 <img src="compTIA.png" class="cert-logo" alt="CompTIA"></li>
+        <li>CompTIA Network+ (N10-009) – Dec 2024 <img src="compTIA.png" class="cert-logo" alt="CompTIA"></li>
+	<li>Google Cybersecurity Professional Certificate – Sep 2024<img src="google.png" class="cert-logo" alt="Google"</li>
+	<li>Ethical Hacking – IIT Kharagpur – May 2023<img src="iit.png" class="cert-logo" alt="IIT"></li>
+      </ul>
+      <a href="#skills" class="btn">My Skills</a>
+    </section>
+
+    <section id="skills">
+      <h1>Skills</h1>
+      <p><b>Languages:</b> Python, Java, C++<br>
+      <b>Technologies:</b> Linux, Burp Suite, Metasploit, Nmap, Wireshark, FTK Imager, Volatility, Splunk<br>
+      <b>Domains:</b> Penetration Testing, Network Security, Vulnerability Assessment, Digital Forensics<br>
+      <b>Soft Skills:</b> Reporting, Documentation, Collaboration, Critical Analysis</p>
+      <a href="#contact" class="btn">Contact Me</a>
+    </section>
+
+    <section id="contact">
+      <h1>Let’s Connect</h1>
+      <p>Interested in collaborating or hiring me? Reach out — I’m always open to opportunities in security research and pentesting.</p>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/ishaansh" target="_blank" aria-label="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"></a>
+        <a href="https://github.com/ishaan0977" target="_blank" aria-label="GitHub"><img src="https://cdn-icons-png.flaticon.com/512/733/733609.png" alt="GitHub"></a>
+      </div>
+      <a href="mailto:Ishaan.twm@gmail.com" class="btn">Email Me</a>
+    </section>
+  </main>
+
+  <footer>© 2025 Ishaan Sharma. All rights reserved.</footer>
+
+  <script>
+    const rail=document.getElementById('rail');
+    const progress=document.getElementById('progress');
+    const dotsWrap=document.getElementById('dots');
+    const sections=[...document.querySelectorAll('main > section')];
+    const glow=document.getElementById('glow');
+
+    /* Reveal on view */
+    const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{root:rail,threshold:.35});
+    sections.forEach(s=>io.observe(s));
+
+    /* Timeline dots */
+    function buildDots(){dotsWrap.innerHTML='';sections.forEach((_,i)=>{const d=document.createElement('div');d.className='dot';d.addEventListener('click',()=>sections[i].scrollIntoView({behavior:'smooth',inline:'center'}));dotsWrap.appendChild(d);});updateProgress();}
+
+    /* Progress + active */
+    function updateProgress(){const max=rail.scrollWidth-rail.clientWidth;const pct=max>0?rail.scrollLeft/max:0;progress.style.width=(pct*(window.innerWidth-(0.12*window.innerWidth)))+'px';const idx=Math.round(pct*(sections.length-1));[...dotsWrap.children].forEach((d,i)=>d.classList.toggle('active',i===idx));}
+    rail.addEventListener('scroll',updateProgress,{passive:true});window.addEventListener('resize',updateProgress);
+
+    /* Parallax (hero avatar + title) */
+    const parallaxEls=document.querySelectorAll('[data-parallax], h1[data-parallax]');
+    rail.addEventListener('scroll',()=>{const t=rail.scrollLeft/rail.clientWidth;parallaxEls.forEach(el=>{const depth=8;el.style.transform=`translateY(${t*depth}px)`;});},{passive:true});
+
+    /* Cursor glow follow */
+    let gx=innerWidth/2, gy=innerHeight/2, tx=gx, ty=gy;addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY});
+    function animateGlow(){gx+=(tx-gx)*.12;gy+=(ty-gy)*.12;glow.style.left=gx+'px';glow.style.top=gy+'px';requestAnimationFrame(animateGlow);}animateGlow();
+    document.querySelectorAll('a,.btn,.socials img').forEach(el=>{el.addEventListener('mouseenter',()=>{glow.style.width='44px';glow.style.height='44px'});el.addEventListener('mouseleave',()=>{glow.style.width='28px';glow.style.height='28px'})});
+
+    buildDots();updateProgress();
+  </script>
+</body>
+</html>
